@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/live_nav_graph"
+    app:startDestination="@id/live_info_bar_fragment">
+
+    <fragment
+        android:id="@+id/live_info_bar_fragment"
+        android:name="com.excellence.navnestedgraph.LiveInfoBarFragment"
+        android:label="LiveInfoBarFragment"
+        tools:layout="@layout/live_info_bar_fragment">
+        <action
+            android:id="@+id/action_live_info_bar_fragment_to_live_list_fragment"
+            app:destination="@id/live_list_fragment" />
+        <action
+            android:id="@+id/action_live_info_bar_fragment_to_epg_fragment"
+            app:destination="@id/epg_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/live_list_fragment"
+        android:name="com.excellence.navnestedgraph.LiveListFragment"
+        android:label="LiveListFragment"
+        tools:layout="@layout/live_list_fragment" />
+
+    <fragment
+        android:id="@+id/epg_fragment"
+        android:name="com.excellence.navnestedgraph.EpgFragment"
+        android:label="EpgFragment"
+        tools:layout="@layout/epg_fragment" />
+
+</navigation>

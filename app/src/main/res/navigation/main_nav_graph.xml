@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/live_fragment">
+
+    <fragment
+        android:id="@+id/live_fragment"
+        android:name="com.excellence.navnestedgraph.LiveFragment"
+        android:label="LiveFragment"
+        tools:layout="@layout/live_fragment">
+        <action
+            android:id="@+id/action_live_fragment_to_live_nav_graph"
+            app:destination="@id/live_nav_graph" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/vod_fragment"
+        android:name="com.excellence.navnestedgraph.VodFragment"
+        android:label="VodFragment"
+        tools:layout="@layout/vod_fragment">
+        <action
+            android:id="@+id/action_vod_fragment_to_vod_nav_graph"
+            app:destination="@id/vod_nav_graph" />
+    </fragment>
+
+    <include app:graph="@navigation/live_nav_graph" />
+
+    <include app:graph="@navigation/vod_nav_graph" />
+</navigation>

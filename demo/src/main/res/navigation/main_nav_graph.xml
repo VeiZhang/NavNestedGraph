@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/live_fragment">
+
+    <fragment
+        android:id="@+id/live_fragment"
+        android:name="com.excellence.navnestedgraph.LiveFragment"
+        android:label="LiveFragment"
+        tools:layout="@layout/live_fragment" />
+
+    <fragment
+        android:id="@+id/vod_fragment"
+        android:name="com.excellence.navnestedgraph.VodFragment"
+        android:label="VodFragment"
+        tools:layout="@layout/vod_fragment" />
+
+    <fragment
+        android:id="@+id/pvr_fragment"
+        android:name="com.excellence.navnestedgraph.PvrFragment"
+        android:label="PvrFragment"
+        tools:layout="@layout/pvr_fragment" />
+
+    <action
+        android:id="@+id/action_global_pvr_fragment"
+        app:destination="@+id/pvr_fragment" />
+
+    <action
+        android:id="@+id/action_global_live_fragment"
+        app:destination="@+id/live_fragment" />
+
+    <action
+        android:id="@+id/action_global_vod_fragment"
+        app:destination="@+id/vod_fragment" />
+</navigation>

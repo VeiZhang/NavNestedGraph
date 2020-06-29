@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/vod_nav_graph"
+    app:startDestination="@id/vod_list_fragment">
+
+    <fragment
+        android:id="@+id/vod_list_fragment"
+        android:name="com.excellence.navnestedgraph.VodListFragment"
+        android:label="VodListFragment"
+        tools:layout="@layout/vod_list_fragment">
+        <action
+            android:id="@+id/action_vod_list_fragment_to_vod_detail_fragment"
+            app:destination="@id/vod_detail_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/vod_detail_fragment"
+        android:name="com.excellence.navnestedgraph.VodDetailFragment"
+        android:label="VodDetailFragment"
+        tools:layout="@layout/vod_detail_fragment">
+        <action
+            android:id="@+id/action_vod_detail_fragment_to_vod_info_bar_fragment"
+            app:destination="@id/vod_info_bar_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/vod_info_bar_fragment"
+        android:name="com.excellence.navnestedgraph.VodInfoBarFragment"
+        android:label="VodInfoBarFragment"
+        tools:layout="@layout/vod_info_bar_fragment" />
+</navigation>
