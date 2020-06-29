@@ -1,6 +1,7 @@
 package com.excellence.navnestedgraph;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -21,13 +23,15 @@ import androidx.navigation.Navigation;
  */
 public class PvrFragment extends Fragment {
 
+    private static final String TAG = PvrFragment.class.getSimpleName();
+
     private NavController mNavController;
-    private NavController mSubNavController;
     private View mRootView = null;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.i(TAG, "onCreateView: " + this);
         if (mRootView == null) {
             mRootView = inflater.inflate(R.layout.pvr_fragment, container, false);
         }
@@ -43,12 +47,12 @@ public class PvrFragment extends Fragment {
 
         if (!isInit) {
             mNavController = Navigation.findNavController(view);
-            mSubNavController = Navigation.findNavController(view.findViewById(R.id.nav_host_fragment));
-            mSubNavController.setGraph(R.navigation.live_nav_graph);
             view.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    mSubNavController.navigate(R.id.action_live_info_bar_fragment_to_live_list_fragment);
+                    FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_layout, new RecodingListFragment());
+                    transaction.commit();
                 }
             }, 2000);
 
