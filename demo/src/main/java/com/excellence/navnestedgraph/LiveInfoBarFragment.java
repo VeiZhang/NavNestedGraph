@@ -5,7 +5,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.Navigation;
 
 /**
  * <pre>
@@ -15,7 +15,7 @@ import androidx.navigation.fragment.NavHostFragment;
  *     desc   :
  * </pre> 
  */
-public class LiveInfoBarFragment extends BaseFragment {
+public class LiveInfoBarFragment extends BaseTvFragment {
 
     @Override
     protected int getContentViewLayoutId() {
@@ -38,9 +38,9 @@ public class LiveInfoBarFragment extends BaseFragment {
     public void intent(View v) {
         i++;
         if (i % 2 == 0) {
-            NavHostFragment.findNavController(this).navigate(R.id.action_live_info_bar_fragment_to_live_list_fragment);
+            Navigation.findNavController(v).navigate(R.id.action_live_info_bar_fragment_to_live_list_fragment);
         } else {
-            NavHostFragment.findNavController(this).navigate(R.id.action_live_info_bar_fragment_to_epg_fragment);
+            Navigation.findNavController(v).navigate(R.id.action_live_info_bar_fragment_to_epg_fragment);
         }
     }
 }

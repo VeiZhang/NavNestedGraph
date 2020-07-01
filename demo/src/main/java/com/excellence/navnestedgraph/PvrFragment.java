@@ -27,6 +27,7 @@ public class PvrFragment extends Fragment {
 
     private NavController mNavController;
     private View mRootView = null;
+    private ModuleNavHostFragment mModuleNavHostFragment;
 
     @Nullable
     @Override
@@ -34,6 +35,11 @@ public class PvrFragment extends Fragment {
         Log.i(TAG, "onCreateView: " + this);
         if (mRootView == null) {
             mRootView = inflater.inflate(R.layout.pvr_fragment, container, false);
+
+//            mModuleNavHostFragment = new ModuleNavHostFragment();
+//            FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+//            transaction.add(R.id.frame_layout, mModuleNavHostFragment);
+//            transaction.commit();
         }
 //        mRootView = inflater.inflate(R.layout.pvr_fragment, container, false);
         return mRootView;
@@ -47,12 +53,19 @@ public class PvrFragment extends Fragment {
 
         if (!isInit) {
             mNavController = Navigation.findNavController(view);
+//            final NavHostFragment navHostFragment = ModuleNavHostFragment.create(R.navigation.live_nav_graph);
+
+            mModuleNavHostFragment = new ModuleNavHostFragment();
+            FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+            transaction.add(R.id.frame_layout, mModuleNavHostFragment);
+            transaction.commit();
+
             view.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-                    transaction.replace(R.id.frame_layout, new RecodingListFragment());
-                    transaction.commit();
+                    NavController subNavController = mModuleNavHostFragment.getNavController();
+                    subNavController.setGraph(R.navigation.live_nav_graph);
+                    subNavController.navigate(R.id.action_live_info_bar_fragment_to_live_list_fragment);
                 }
             }, 2000);
 
@@ -66,4 +79,7 @@ public class PvrFragment extends Fragment {
         isInit = true;
     }
 
+    public void onNestedCreateView() {
+        Log.i(TAG, "onNestedCreateView: ");
+    }
 }

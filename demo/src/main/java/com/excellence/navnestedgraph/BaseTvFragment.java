@@ -41,6 +41,12 @@ public abstract class BaseTvFragment extends BaseFragment
         return mRootView;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+//        addBackPressHandler(view);
+    }
+
     /**
      * 如果需要监听返回键，则在{@link #onViewCreated}中增加该方法，并且重写{@link #onBackPressed}
      * 表示按返回键的时候，会触发{@link #onBackPressed}
@@ -55,6 +61,7 @@ public abstract class BaseTvFragment extends BaseFragment
                 new OnBackPressedCallback(true) {
                     @Override
                     public void handleOnBackPressed() {
+                        System.out.println("back");
                         onBackPressed();
                     }
                 });
@@ -65,7 +72,7 @@ public abstract class BaseTvFragment extends BaseFragment
      */
     protected void onBackPressed() {
         if (mNavController != null) {
-            mNavController.navigateUp();
+            System.out.println(mNavController.navigateUp() + "=====");
         }
     }
 

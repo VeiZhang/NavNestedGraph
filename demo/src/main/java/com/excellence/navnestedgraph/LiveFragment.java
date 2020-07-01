@@ -46,6 +46,7 @@ public class LiveFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Log.i(TAG, "module onViewCreated: " + this);
+
         if (!isInit) {
             mNavController = Navigation.findNavController(view);
             mSubNavController = Navigation.findNavController(view.findViewById(R.id.nav_host_fragment));
@@ -73,7 +74,10 @@ public class LiveFragment extends Fragment {
          * 当A->B后，但B快速回退到A时，A执行onDestroyView与onCreateView间隔时间过短，
          * onDestroyView还没来得及将{@link mRootView}移除，从而导致onCreateView抛出异常
          */
-        ((ViewGroup) mRootView.getParent()).removeView(mRootView);
+        if (mRootView.getParent() instanceof ViewGroup) {
+            ((ViewGroup) mRootView.getParent()).removeView(mRootView);
+        }
+        //        ((ViewGroup) mRootView.getParent()).removeView(mRootView);
         super.onDestroyView();
     }
 }

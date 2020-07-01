@@ -8,7 +8,7 @@ package com.excellence.navnestedgraph;
  *     desc   :
  * </pre> 
  */
-public class EpgFragment extends BaseFragment {
+public class EpgFragment extends BaseTvFragment {
 
     @Override
     protected int getContentViewLayoutId() {
